@@ -64,6 +64,8 @@ if munin_servers.empty?
   munin_servers << node
 end
 
+munin_servers.delete_if { |s| s[:fqdn].nil? }
+
 munin_servers.sort! { |a,b| a[:fqdn] <=> b[:fqdn] }
 
 case node['platform']
